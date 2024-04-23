@@ -1,0 +1,26 @@
+{
+    "name": "Tunespot",
+    "short_name": "Tunespot",
+    "icons": [
+      {
+        "src": "apple-touch-icon.png",
+        "sizes": "72x72",
+        "type": "image/png"
+      },
+      {
+        "src": "logo.png",
+        "sizes": "96x96",
+        "type": "image/png"
+      },
+      {
+        "src": "favicon.ico",
+        "sizes": "128x128",
+        "type": "image/ico"
+      }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#000000"
+  }
+  

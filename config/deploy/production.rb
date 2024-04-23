@@ -1,0 +1,1 @@
+# server '64.227.118.232',  user: 'rails', roles: %w{app web db}, ssh_options: { forward_agent: true }

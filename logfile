@@ -1,0 +1,11 @@
+2023-03-21 11:42:49.065 CAT [41719] LOG:  starting PostgreSQL 14.7 (Homebrew) on x86_64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.202), 64-bit
+2023-03-21 11:42:49.069 CAT [41719] LOG:  listening on IPv6 address "::1", port 5432
+2023-03-21 11:42:49.069 CAT [41719] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2023-03-21 11:42:49.070 CAT [41719] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2023-03-21 11:42:49.076 CAT [41720] LOG:  database system was shut down at 2023-03-21 11:42:39 CAT
+2023-03-21 11:42:49.083 CAT [41719] LOG:  database system is ready to accept connections
+2023-03-21 13:53:48.277 CAT [50942] LOG:  unexpected EOF on client connection with an open transaction
+2023-03-23 20:30:58.271 CAT [13241] LOG:  could not send data to client: Broken pipe
+2023-03-23 20:30:58.326 CAT [12991] LOG:  could not send data to client: Broken pipe
+2023-03-23 20:30:58.454 CAT [12991] FATAL:  connection to client lost
+2023-03-23 20:30:58.455 CAT [13241] FATAL:  connection to client lost

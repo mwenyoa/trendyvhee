@@ -1,0 +1,118 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
+@media (min-width: 640px) {
+  table {
+        display: inline-table !important;
+      }
+
+      thead tr:not(:first-child) {
+        display: none;
+      }
+    }
+
+    td:not(:last-child) {
+      border-bottom: 0;
+    }
+
+    th:not(:last-child) {
+      border-bottom: 2px solid rgba(0, 0, 0, .1);
+    }
+
+.phone-input {
+    background-color: rgb(38, 46, 57) !important;
+    border: rgb(44, 50, 59) !important;
+    width: 100% !important;
+    color: rgb(229 231 235) !important;
+    padding: 1.5rem;
+}
+
+.phone-input::placeholder {
+    color: rgb(197, 197, 197) !important;
+}
+
+.react-tel-input .flag-dropdown {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding: 0;
+    background-color: rgb(38, 46, 57) !important;
+    border: 1px solid #525252 !important;
+    border-radius: 3px 0 0 3px;
+  }
+
+  .react-tel-input .flag-dropdown.open {
+    z-index: 2;
+    background: rgb(38, 46, 57) !important;
+    background-color: rgb(38, 46, 57) !important;
+    border-radius: 3px 0 0 0;
+  }
+
+  .react-tel-input .selected-flag .arrow.up {
+    border-top: none;
+    border-bottom: 4px solid rgb(33, 31, 31) !important;
+  }
+
+  .react-tel-input .flag {
+    width: 16px;
+    height: 11px;
+    background-color: rgb(6, 165, 6) !important;
+  }
+
+  .react-tel-input .flag-dropdown.open .selected-flag {
+    background: #313131 !important;
+    border-radius: 3px 0 0 0;
+  }
+
+  .country-name {
+    color: black !important;
+  }
+
+  .rhap_container {
+    position: absolute !important;
+    z-index: 100 !important;
+    bottom: 0 !important;
+    background-color: #22233000 !important;
+    width: 100% !important;
+    box-shadow: #b9b4b4;
+  }
+
+  .rhap_time {
+    color: rgb(240, 240, 240) !important;
+
+  }
+
+  .multi-select {
+    --rmsc-primary: #4285f4;
+    --rmsc-hover: #2a2a2a;
+    --rmsc-selected: #444444;
+    --rmsc-border: #151515;
+    --rmsc-gray: #0d0d0d;
+    --rmsc-background: #2e2e2e;
+    --rmsc-spacing: 10px;
+    --rmsc-border-radius: 4px;
+    --rmsc-height: 38px;
+  }
+
+  input:checked ~ .dot {
+    transform: translateX(100%);
+    background-color: #48bb78;
+  }

@@ -1,0 +1,2 @@
+web: RAILS_ENV=development bin/rails server -p 3000 
+vite: RAILS_ENV=development bin/vite dev --clobber
