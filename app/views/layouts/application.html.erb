@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Trendy Vhee</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= display_meta_tags(default_meta_tags) %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= vite_client_tag %>
+    <%= vite_stylesheet_tag 'application', data: { "turbo-track": "reload" } %>
+    <%= vite_typescript_tag 'index.tsx' %>
+    <%# <link rel="manifest" href="/manifest.json"> %>
+
+    <script type="text/javascript">
+      window.logo = "<%= image_url('logo.png')%>"
+      window.genreBackground = "<%= image_url('genre.jpg')%>"
+      window.checkRole = "<%= user_role %>"
+      window.loggedIn = "<%= login? %>"
+      window.appId = "<%= Rails.application.credentials.facebook[:APP_ID] %>"
+      window.defaultUser = "<%= image_url('defaultuser.jpg')%>"
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-JQ2VCJ0N33');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6772041436024456"
+     crossorigin="anonymous"></script>
+
+    <script>
+      // if ("serviceWorker" in navigator) {
+      //   window.addEventListener("load", () => {
+      //     navigator.serviceWorker
+      //       .register("/service-worker.js")
+      //       .then((registration) => {
+      //         console.log("ServiceWorker registered: ", registration);
+      //       })
+      //       .catch((registrationError) => {
+      //         console.log(
+      //           "ServiceWorker registration failed: ",
+      //           registrationError
+      //         );
+      //       });
+      //   });
+      // }
+    </script>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
