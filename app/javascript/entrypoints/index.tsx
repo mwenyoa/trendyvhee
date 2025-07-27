@@ -5,11 +5,11 @@ import { Provider } from "react-redux";
 import store from './store/store';
 import App from './App';
 import { ShoppingCartProvider } from './components';
+import Header from './components/features/header';
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
   <React.StrictMode>
-    <main>
     <Provider store={store}>
       <HashRouter>
         <ShoppingCartProvider>
@@ -17,6 +17,5 @@ root.render(
         </ShoppingCartProvider>
       </HashRouter>
     </Provider>
-    </main>
   </React.StrictMode>,
 );

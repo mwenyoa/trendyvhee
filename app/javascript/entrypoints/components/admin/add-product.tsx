@@ -5,7 +5,7 @@ import { useFetchCategories, useIsLoading } from "../../hooks/";
 import ShowAlert from "../../hooks/toastyMessage";
 import { createProduct } from "../../services";
 import { AppDispatch } from "../../store/store";
-import { Loader } from "../faetures";
+import { Loader } from "../features";
 
 type Props = {};
 

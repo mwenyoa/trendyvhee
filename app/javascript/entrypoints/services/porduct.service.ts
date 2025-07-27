@@ -6,14 +6,14 @@ type data = {
   id?: string;
   productData?: {};
   product_info?: {
-    cid: string,
-    pid: string
-  }
+    cid: string;
+    pid: string;
+  };
 };
 
 export const createProduct = createAsyncThunk(
   "Create Product",
-  async ({ productData }:data) => {
+  async ({ productData }: data) => {
     try {
       const res = await axios.post(`${base_url}products`, productData);
       const proData = await res.data;
@@ -24,13 +24,18 @@ export const createProduct = createAsyncThunk(
   }
 );
 
-export const fetchProduct = createAsyncThunk("Fetch Product",async ({product_info}:data) => {
-   const {cid, pid }: any = product_info;
-  try {
-     const res = await axios.get(`${base_url}categories/${cid}/products/${pid}`);
-     const data  = await res.data;
-     return data;
-  } catch (err) {
-    throw new Error(err.response.data.error);
+export const fetchProduct = createAsyncThunk(
+  "Fetch Product",
+  async ({ product_info }: data) => {
+    const { cid, pid }: any = product_info;
+    try {
+      const res = await axios.get(
+        `${base_url}categories/${cid}/products/${pid}`
+      );
+      const data = await res.data;
+      return data;
+    } catch (err) {
+      throw new Error(err.response.data.error);
+    }
   }
-})
+);

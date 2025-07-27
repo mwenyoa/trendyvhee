@@ -8,6 +8,7 @@ import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { MdRateReview } from "react-icons/md";
 import AddReview from "./Review";
+import ProductReviews from "./reviews";
 
 interface ProductParams {
   [key: string]: string | undefined;
@@ -26,13 +27,16 @@ const ProductDetails: React.FC = () => {
   const { getCartItems } = useLocalStorage();
   const cartItems = getCartItems()?.map((item) => item);
   const params = useParams<ProductParams>();
+
   const product_info: ProductParams = {
     cid: params?.cid,
     pid: params?.pid,
   };
-  const product = useFetchProduct({ product_info });
 
-  //  Image  gallery array
+  const product = useFetchProduct({ product_info });
+  console.log("PRoduct Data::::", product);
+
+  //  Image gallery array
   const images = product?.images?.map((imageUrl) => ({
     original: imageUrl,
     thumbnail: imageUrl,
@@ -51,7 +55,7 @@ const ProductDetails: React.FC = () => {
     setIsInCart(Boolean(inCart));
   }, [cartItems, product]);
 
-  // resizing  screen hook
+  // resizing screen hook
   useEffect(() => {
     const handleResize = () => {
       setThumbnailPos(window.innerWidth < 768 ? "bottom" : "left");
@@ -83,7 +87,7 @@ const ProductDetails: React.FC = () => {
     <section className="container mx-auto dark:bg-gray-900 py-8 bg-white px-4 py-6 my-20 rounded-lg shadow-md text-black w-full">
       <div className="mx-auto py-20 px-2 sm:px-4 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 grid-flow-row-dense rlative">
         <div className="md:col-span-2 max-w-2xl h-full w-full mx-auto rounded-md shadow-md hover:shadow-md relative">
-          <div className="h-full  w-full rounded-md bg-gray-200 dark:bg-gray-500 mb-4 p-2 relative">
+          <div className="h-full w-full rounded-md bg-gray-200 dark:bg-gray-500 mb-4 p-2 relative">
             <ImageGallery
               items={images || []}
               thumbnailPosition={thumbnailPos}
@@ -112,7 +116,7 @@ const ProductDetails: React.FC = () => {
               <span className="font-bold text-gray-700 dark:text-gray-300">
                 Status:
               </span>
-              <span className="text-grey-500 semibold dark:text-gray-300">
+              <span className="text-gray-500 semibold dark:text-gray-300">
                 Available
               </span>
             </div>
@@ -163,19 +167,31 @@ const ProductDetails: React.FC = () => {
         </div>
       </div>
       <ToastContainer />
-      
-<div className="inline-flex items-center justify-center w-full ">
-    <hr className="w-full h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
-    <span className="absolute px-3 font-large font-semibold text-gray-900 -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900">Product Reviews</span>
-</div>
 
-      <div className="flex justify-end w-full mb-20 ">   <button
-        onClick={overlayHandler}
-        className="w-100 px-3 flex  py-3 text-lg bg-gradient-to-r from-green-300 to-blue-600  font-semibold rounded-xl text-white text-bold"
-      >
-        <span><MdRateReview className="text-3xl mx-auto"/></span><span className="">Add Review</span>
-      </button></div>
-      <AddReview product_id={product?.id} show={showOverlay} onClose={closeReviewModal} />
+      <div className="inline-flex items-center justify-center w-full ">
+        <hr className="w-full h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+        <span className="absolute px-3 font-large font-semibold text-gray-900 -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900">
+          Product Reviews
+        </span>
+      </div>
+
+      <div className="flex justify-end w-full mb-20 ">
+        <button
+          onClick={overlayHandler}
+          className="w-100 px-3 flex  py-3 text-lg bg-gradient-to-r from-green-300 to-blue-600  font-semibold rounded-xl text-white text-bold"
+        >
+          <span>
+            <MdRateReview className="text-3xl mx-auto" />
+          </span>
+          <span className="">Add Review</span>
+        </button>
+      </div>
+      <ProductReviews review={{ product_id: product?.id }} />
+      <AddReview
+        product_id={product?.id}
+        show={showOverlay}
+        onClose={closeReviewModal}
+      />
     </section>
   );
 };

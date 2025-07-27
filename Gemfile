@@ -93,7 +93,7 @@ gem 'dotenv-rails'
 gem 'pg_search'
 gem 'aws-sdk', '~> 3'
 gem "mini_magick"
-gem 'will_paginate', '~> 3.3'
+gem 'will_paginate', '~> 4.0'
 gem 'meta-tags'
 gem 'postmark-rails'
 gem 'railties'

@@ -6,7 +6,7 @@ import {
   fetchCategory,
 } from "./category.service";
 import { createProduct, fetchProduct } from "./porduct.service";
-import { createReview } from "./reviews.service";
+import { createReview, fetchReviews } from "./reviews.service";
 
 export {
   RegisterUser,
@@ -17,5 +17,6 @@ export {
   fetchCategory,
   createProduct,
   fetchProduct, 
-  createReview
+  createReview,
+  fetchReviews
 };

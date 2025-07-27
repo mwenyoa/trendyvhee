@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       # orders routes
       resources :orders, only: %i[index show create update destroy] 
       # reviews routes
-      resources :reviews, only: %i[index show create update destroy] 
+      resources :reviews, only: %i[create update destroy] 
       # categories routes
       resources :categories, only: %i[index show create update destroy] do
         get :photo, on: :member
@@ -39,6 +39,7 @@ Rails.application.routes.draw do
       resources :users, only: %i[index show create update destroy] do
         get :photo, on: :member
       end
+      get "product-reviews/:id", to: 'reviews#index'
 
       get 'current-user', to: 'users#get_user'
     end

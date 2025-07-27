@@ -3,6 +3,7 @@ import CategorySlice from "./category.reducer";
 import CategoriesSlice from "./categories.reducer";
 import ProductSlice from "./product.reducer";
 import ReviewSlice from "./review.reducer";
+import ReviewsSlice from "./reviews.reducer"
 
 export {
   NewUserReducer,
@@ -10,4 +11,5 @@ export {
   CategoriesSlice,
   ProductSlice,
   ReviewSlice,
+  ReviewsSlice
 };

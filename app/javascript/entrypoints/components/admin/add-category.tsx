@@ -7,7 +7,7 @@ import { AppDispatch } from "../../store/store";
 import useIsLoading from "../../hooks/useIsLoading";
 import { ShowAlert } from "../../hooks";
 import { createCategory } from "../../services";
-import { Loader } from "../faetures";
+import { Loader } from "../features";
 
 type Props = {};
 

@@ -1,64 +1,79 @@
 import React, { useState } from "react";
 import { IoMdStar } from "react-icons/io";
 import { RxCross1 } from "react-icons/rx";
+import { useDispatch } from "react-redux";
+import { createReview } from "../../services";
+import { AppDispatch } from "../../store/store";
+import Notifications from "./notifications";
+import { ShowAlert } from "../../hooks";
 
-
-type reviewParams = {
+type ReviewParams = {
   product_id?: string;
-  user_id?: string;
   show?: boolean;
-  onClose: () => void
+  onClose: () => void;
 };
 
-interface reviewInt {
+interface ReviewInt {
   product_id?: string;
-  user_id?: string;
-  rating?: number | undefined;
-  message?: string;
+  rating: number;
+  message: string;
 }
 
-const initReview = {
+const initReview: ReviewInt = {
   product_id: "",
-  user_id: "",
   rating: 0,
   message: "",
-} as reviewInt;
+};
 
-const AddReview: React.FC<reviewParams> = (props) => {
-  const { product_id, show, onClose} = props;
-  const [isClosed, setIsClosed] = useState<false | true>(false)
+const AddReview: React.FC<ReviewParams> = ({ product_id, show, onClose }) => {
   const [review, setReview] = useState(initReview);
+  const dispatch: AppDispatch = useDispatch();
 
-  // change handler
   const changeHandler = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { name, value, type } = e.target;
-    if (type === "number") {
-      setReview({ ...review, [name]: parseInt(value) });
-    } else {
-      setReview({ ...review, [name]: value });
-    }
+    const { name, value } = e.target;
+    setReview((prevReview) => ({
+      ...prevReview,
+      [name]: name === "rating" ? parseInt(value) : value,
+    }));
   };
 
-  // rating change handler
   const ratingChangeHandler = (ratingValue: number) => {
     setReview({ ...review, rating: ratingValue });
   };
 
-  // submit handler
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { product_id, user_id, rating, message } = review;
-    if (product_id && user_id && message !== "" && rating !== 0) {
-      console.log(review);
+    // Update the product_id from props in the review state
+    setReview((prevReview) => ({
+      ...prevReview,
+      product_id: product_id || prevReview.product_id,
+    }));
+    const { rating, message } = review;
+    if (review?.product_id && message !== "" && rating !== 0) {
+      const reviewData: {} = {
+        review: {
+          product_id: review?.product_id,
+          review_text: message,
+          rating: rating,
+        },
+      };
+
+      // review data
+      dispatch(createReview(reviewData)).then((res: any) => {
+        console.log("res", res)
+        if (res.payload !== undefined) {
+          ShowAlert("You successfully added a review", `success`);
+        } else {
+          ShowAlert(res.error.message, "error");
+        }
+      });
     }
-    // Hide overlay after submission
-
-    onClose();
+    if (review) {
+      onClose();
+    }
   };
-
-
 
   return (
     <>
@@ -72,12 +87,11 @@ const AddReview: React.FC<reviewParams> = (props) => {
             >
               <h2 className="text-gray-800 text-2xl font-semibold grid grid-cols-8 space-x-5">
                 <span className="flex-start col-span-7">
-                  {" "}
                   Your opinion matters!
                 </span>{" "}
                 <span>
                   <button onClick={onClose}>
-                  <RxCross1 className=" col-span-1 text-3xl text-blue-700 font-bold flex-end hover:cursor-pointer hover:font-bold" />
+                    <RxCross1 className="col-span-1 text-3xl text-blue-700 font-bold flex-end hover:cursor-pointer hover:font-bold" />
                   </button>
                 </span>
               </h2>
@@ -106,15 +120,19 @@ const AddReview: React.FC<reviewParams> = (props) => {
                 onChange={changeHandler}
                 className="p-4 text-gray-500 rounded-xl resize-none"
                 placeholder="Leave a message"
+                required
               ></textarea>
+              {/* Hidden input with product_id */}
+              <input type="hidden" value={product_id} name="product_id" />
               <button
                 type="submit"
-                className="py-3 text-lg bg-gradient-to-r from-green-300 to-blue-600  font-bold rounded-xl text-white text-bold"
+                className="py-3 text-lg bg-gradient-to-r from-green-300 to-blue-600 font-bold rounded-xl text-white"
               >
                 Rate now
               </button>
             </form>
           </div>
+          <Notifications />
         </div>
       )}
     </>
