@@ -5,6 +5,7 @@ class ProductSerializer < ActiveModel::Serializer
   belongs_to :category
   has_many :reviews
 
+
   def images
     return unless object.images.attached?
 

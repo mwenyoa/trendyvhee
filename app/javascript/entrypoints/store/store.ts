@@ -6,6 +6,7 @@ import {
   CategoriesSlice,
   ProductSlice,
   ReviewSlice,
+  ReviewsSlice,
 } from "../reducers";
 
 const store = configureStore({
@@ -16,6 +17,7 @@ const store = configureStore({
     categories: CategoriesSlice,
     product: ProductSlice,
     review: ReviewSlice,
+    reviews: ReviewsSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

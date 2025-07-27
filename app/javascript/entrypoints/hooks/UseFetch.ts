@@ -40,7 +40,9 @@ export const useFetchProduct = ({ product_info }: data) => {
   const { product } = useSelector((state: RootState) => state.product);
   const prod = { product_info };
   useEffect(() => {
-    dispatch(fetchProduct(prod));
+    if(prod){
+      dispatch(fetchProduct(prod));
+    }
   }, [dispatch, product_info?.cid, product_info?.pid]);
   return product;
 };
